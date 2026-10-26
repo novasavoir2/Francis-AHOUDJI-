@@ -10,16 +10,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,600;0,800;1,400&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   TOKENS DE DESIGN — SYSTÈME PREMIUM (FOND BLEU LUMINEUX)
+   TOKENS DE DESIGN — SYSTÈME PREMIUM (BLEU & BLANC & JAUNE)
    ============================================================ */
 :root {
-    /* Bleu électrique (bannière) */
+    /* Bleu électrique (Bannière) */
     --bleu-electrique: #0000FF;
     --bleu-profond: #0000CC;
     --bleu-clair: #4D4DFF;
-    --bleu-pale: #E6E6FF;
+    --bleu-pale: #F0F4FF; /* Fond très clair pour les sections */
     
-    /* Jaune (accent) */
+    /* Jaune (Accent) */
     --jaune: #FFD700;
     --jaune-clair: #FFE44D;
     
@@ -211,7 +211,7 @@ img {
 }
 
 /* ============================================================
-   NAVBAR INTELLIGENTE (BLANCHE/BLEUE)
+   NAVBAR INTELLIGENTE (BLANCHE)
    ============================================================ */
 nav#mainNav {
     position: fixed;
@@ -222,7 +222,7 @@ nav#mainNav {
     align-items: center;
     z-index: 1000;
     transition: transform 0.4s var(--ease-out), background 0.4s, backdrop-filter 0.4s;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
 }
 nav#mainNav.hidden-nav { transform: translateY(-100%); }
@@ -341,12 +341,12 @@ nav#mainNav.scrolled {
 }
 .btn-outline {
     background: transparent;
-    color: var(--bleu-electrique);
-    border: 2px solid var(--bleu-electrique);
+    color: var(--blanc);
+    border: 2px solid var(--blanc);
 }
 .btn-outline:hover {
-    background: var(--bleu-electrique);
-    color: var(--blanc);
+    background: var(--blanc);
+    color: var(--bleu-electrique);
     transform: translateY(-4px);
 }
 .btn::before {
@@ -360,7 +360,7 @@ nav#mainNav.scrolled {
 .btn:hover::before { left: 150%; }
 
 /* ============================================================
-   HERO SECTION (FOND BLEU)
+   HERO SECTION (FOND BLEU & PHOTO FA.JPG)
    ============================================================ */
 .hero {
     min-height: 100vh;
@@ -376,7 +376,7 @@ nav#mainNav.scrolled {
     position: absolute;
     inset: 0;
     background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 60%),
-                radial-gradient(circle at 80% 80%, rgba(255,215,0,0.1) 0%, transparent 50%);
+                radial-gradient(circle at 80% 80%, rgba(255,215,0,0.15) 0%, transparent 50%);
     z-index: 1;
 }
 .hero-particles {
@@ -385,10 +385,18 @@ nav#mainNav.scrolled {
     z-index: 2;
     pointer-events: none;
 }
-.hero-content {
+.hero-grid {
     position: relative;
     z-index: 3;
-    max-width: 900px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.hero-content {
     transform-style: preserve-3d;
 }
 .hero-tag {
@@ -405,10 +413,10 @@ nav#mainNav.scrolled {
     background: rgba(255, 215, 0, 0.1);
 }
 .hero-title {
-    font-size: clamp(3rem, 7vw, 6rem);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
     margin-bottom: 24px;
     color: var(--blanc);
-    text-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 .hero-title .text-gold {
     color: var(--jaune);
@@ -421,24 +429,16 @@ nav#mainNav.scrolled {
     -webkit-text-stroke: 1px var(--blanc);
 }
 .hero-subtitle {
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
     color: rgba(255,255,255,0.9);
     margin-bottom: 40px;
-    max-width: 700px;
+    max-width: 600px;
     font-weight: 300;
 }
 .hero-actions {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
-}
-.hero-actions .btn-outline {
-    color: var(--blanc);
-    border-color: var(--blanc);
-}
-.hero-actions .btn-outline:hover {
-    background: var(--blanc);
-    color: var(--bleu-electrique);
 }
 .hero-stats {
     display: flex;
@@ -460,6 +460,27 @@ nav#mainNav.scrolled {
     letter-spacing: 0.1em;
     color: rgba(255,255,255,0.8);
     margin-top: 8px;
+}
+.hero-image {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 4/5;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 4px solid var(--jaune);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    margin: 0 auto;
+}
+.hero-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+}
+@media (max-width: 1024px) {
+    .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    .hero-actions { justify-content: center; }
+    .hero-stats { justify-content: center; }
+    .hero-image { max-width: 300px; margin-top: 40px; }
 }
 
 /* ============================================================
@@ -512,7 +533,7 @@ section {
 }
 
 /* ============================================================
-   BIOGRAPHIE
+   BIOGRAPHIE (PHOTO FB.JPG)
    ============================================================ */
 .bio-grid {
     display: grid;
@@ -568,6 +589,9 @@ section {
     border-radius: 4px;
     font-size: 0.8rem;
     color: var(--bleu-electrique);
+}
+@media (max-width: 900px) {
+    .bio-grid { grid-template-columns: 1fr; }
 }
 
 /* ============================================================
@@ -651,7 +675,7 @@ section {
 }
 
 /* ============================================================
-   GALERIE CUBE 3D (FOND BLEU PALE)
+   GALERIE CUBE 3D (PHOTOS FC À FF)
    ============================================================ */
 .gallery-section {
     background: var(--bleu-pale);
@@ -789,7 +813,7 @@ section {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(255,215,0,0.1) 0%, transparent 60%);
+    background: radial-gradient(circle at 50% 50%, rgba(255,215,0,0.15) 0%, transparent 60%);
 }
 .quote-content {
     position: relative;
@@ -982,43 +1006,50 @@ footer {
     <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
 </nav>
 
-<!-- HERO -->
+<!-- HERO (PHOTO FA.JPG) -->
 <section class="hero" id="hero">
     <div class="hero-bg"></div>
     <canvas class="hero-particles" id="heroParticles"></canvas>
     
-    <div class="hero-content reveal">
-        <div class="hero-tag">Portfolio Professionnel · 2026</div>
-        <h1 class="hero-title">
-            <span>Je donne vie aux idées</span><br>
-            <span class="text-gold">grâce à la stratégie,</span><br>
-            <span class="text-outline">à la créativité et au numérique.</span>
-        </h1>
-        <p class="hero-subtitle">
-            Bienvenue dans mon univers. Je suis Francis AHOUDJI, Community Manager, Social Media Manager, formateur et entrepreneur web, avec une formation en sécurité informatique.
-        </p>
-        <div class="hero-actions">
-            <a href="#expertise" class="btn btn-primary">Découvrir mes expertises</a>
-            <a href="#contact" class="btn btn-outline">Discutons de votre projet</a>
+    <div class="hero-grid">
+        <div class="hero-content reveal">
+            <div class="hero-tag">Portfolio Professionnel · 2026</div>
+            <h1 class="hero-title">
+                <span>Je donne vie aux idées</span><br>
+                <span class="text-gold">grâce à la stratégie,</span><br>
+                <span class="text-outline">à la créativité et au numérique.</span>
+            </h1>
+            <p class="hero-subtitle">
+                Bienvenue dans mon univers. Je suis Francis AHOUDJI, Community Manager, Social Media Manager, formateur et entrepreneur web, avec une formation en sécurité informatique.
+            </p>
+            <div class="hero-actions">
+                <a href="#expertise" class="btn btn-primary">Découvrir mes expertises</a>
+                <a href="#contact" class="btn btn-outline">Discutons de votre projet</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="num" data-target="4">0</div>
+                    <div class="lbl">Pôles d'expertise</div>
+                </div>
+                <div class="stat-item">
+                    <div class="num" data-target="5">0</div>
+                    <div class="lbl">Projets majeurs</div>
+                </div>
+                <div class="stat-item">
+                    <div class="num" data-target="100">0</div>
+                    <div class="lbl">% Engagement</div>
+                </div>
+            </div>
         </div>
-        <div class="hero-stats">
-            <div class="stat-item">
-                <div class="num" data-target="4">0</div>
-                <div class="lbl">Pôles d'expertise</div>
-            </div>
-            <div class="stat-item">
-                <div class="num" data-target="5">0</div>
-                <div class="lbl">Projets majeurs</div>
-            </div>
-            <div class="stat-item">
-                <div class="num" data-target="100">0</div>
-                <div class="lbl">% Engagement</div>
-            </div>
+        
+        <div class="hero-image reveal">
+            <!-- PHOTO FA.JPG -->
+            <img src="fa.jpg" alt="Francis AHOUDJI - Portrait">
         </div>
     </div>
 </section>
 
-<!-- BIOGRAPHIE -->
+<!-- BIOGRAPHIE (PHOTO FB.JPG) -->
 <section id="bio">
     <div class="section-head reveal">
         <div class="section-label">Biographie</div>
@@ -1027,7 +1058,8 @@ footer {
     <div class="bio-grid">
         <div class="bio-visual reveal">
             <div class="bio-img">
-                <img src="b.jpg" alt="Francis AHOUDJI - Franco Digital">
+                <!-- PHOTO FB.JPG -->
+                <img src="fb.jpg" alt="Francis AHOUDJI - Franco Digital">
             </div>
         </div>
         <div class="bio-content reveal">
@@ -1143,7 +1175,7 @@ footer {
     </div>
 </section>
 
-<!-- GALERIE CUBE 3D -->
+<!-- GALERIE CUBE 3D (PHOTOS FC À FF) -->
 <section class="gallery-section">
     <div class="section-head reveal" style="margin: 0 auto 40px; text-align: center;">
         <div class="section-label">Univers Visuel</div>
@@ -1151,10 +1183,11 @@ footer {
     </div>
     <div class="cube-container reveal">
         <div class="cube">
-            <div class="cube-face face-front"><img src="a.jpg" alt="Univers 1"></div>
-            <div class="cube-face face-back"><img src="b.jpg" alt="Univers 2"></div>
-            <div class="cube-face face-right"><img src="c.jpg" alt="Univers 3"></div>
-            <div class="cube-face face-left"><img src="d.jpg" alt="Univers 4"></div>
+            <!-- PHOTOS FC, FD, FE, FF -->
+            <div class="cube-face face-front"><img src="fc.jpg" alt="Univers 1"></div>
+            <div class="cube-face face-back"><img src="fd.jpg" alt="Univers 2"></div>
+            <div class="cube-face face-right"><img src="fe.jpg" alt="Univers 3"></div>
+            <div class="cube-face face-left"><img src="ff.jpg" alt="Univers 4"></div>
         </div>
     </div>
 </section>
